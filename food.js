@@ -1,33 +1,70 @@
 
-var myRequest = new XMLHttpRequest();
-var myRequest = new XMLHttpRequest();
+var dogRequest = new XMLHttpRequest() ;
+var catRequest = new XMLHttpRequest() ;
+var dogLoc = document.getElementById("dogFood")
+var catLoc = document.getElementById("catFood")
 
 
 function dogLists(argument) {
-  for (var i = 0; i < dogFood.length; i++) {
-    dogFood[i]
+  var dogData = JSON.parse(this.responseText).dog_brands ;
+  for (var i = 0; i < dogData.length; i++) {
+    // console.log( dogData[i] ) ;
+    var callData = "<h2>" + dogData[i].name + "</h2>"
 
-      document.getElementById("dogFood").innerHTML = this.responseText ;
-      var data = JSON.parse(this.responseText);
+    var dogType = dogData[i].types ;
+    for (var k = 0; k < dogType.length; k++) {
+      var dogVol = dogType[k].volumes;
+      var callType = "<h4>" + dogType[i].type + "</h4>"
 
+      // console.log( dogVol);
+      var callNamePrice = "";
+      for (var b = 0; b < dogVol.length; b++) {
+        dogVol[b];
+        callNamePrice += "<p>" + dogVol[b].name + "</p>" + "<p>$" + dogVol[b].price + "</p>"
+
+        // console.log( dogVol[b].name);
+      }
     };
+      dogLoc.innerHTML += "<div>" + callData + callType  + callNamePrice + "</div>";
+
   };
+};
 
 
 
 
 
-function catLists() {
+function catLists(argument) {
+  var catData = JSON.parse(this.responseText).cat_brands ;
+  console.log(callData);
+  for (var i = 0; i < catData.length; i++) {
+    // console.log( catData[i] ) ;
+    var callData = "<h2>" + catData[i].name + "</h2>"
 
-      document.getElementById("catFood").innerHTML = this.responseText ;
-      var data = JSON.parse(this.responseText) ;
+    var catType = catData[i].types ;
+    for (var k = 0; k < catType.length; k++) {
+      var catVol = catType[k].volumes;
+      var callType = "<h4>" + catType[i].type + "</h4>"
+
+      // console.log( catVol);
+      var callNamePrice = "";
+      for (var b = 0; b < catVol.length; b++) {
+        catVol[b];
+        callNamePrice += "<p>" + catVol[b].name + "</p>" + "<p>$" + catVol[b].price + "</p>"
+
+        // console.log( catVol[b].name);
+      }
+    };
+      catLoc.innerHTML += "<div>" + callData + callType  + callNamePrice + "</div>";
+
   };
+};
 
 
-myRequest.addEventListener("load", catLists);
-myRequest.open("GET", "catJSON.json");
-myRequest.send();
+catRequest.addEventListener("load", catLists);
+catRequest.open("GET", "catJSON.json");
+catRequest.send();
 
-myRequest.addEventListener("load", dogLists);
-myRequest.open("GET", "dogJSON.json");
-myRequest.send();
+dogRequest.addEventListener("load", dogLists);
+dogRequest.open("GET", "dogJSON.json");
+dogRequest.send();
