@@ -12,30 +12,35 @@ function dogLists() {
     var callData = "<h2>" + "<p>" + "Dog Food Brands" + "</p>" + dogData[i].name + "</h2>";
 
     var dogType = dogData[i].types ;
+    console.log(dogData[i].types );
     for (var k = 0; k < dogType.length; k++) {
-      var dogVol = dogType[k].volumes;
-      var callType = "<h4>" + dogType[i].type + "</h4>";
 
-      // console.log( dogVol);
-      var callNamePrice = "";
+      var callType;
+      callType += "<h4>" + "<p>" + dogType[k].type + "</p>" + "</h4>";
+
+      var dogVol = dogType[k].volumes;
+
+      console.log( callType);
+
+      var callNamePrice;
+
       for (var b = 0; b < dogVol.length; b++) {
         dogVol[b];
         callNamePrice += "<p>" + dogVol[b].name + ":" + " $" + dogVol[b].price + "</p>";
 
-        // console.log( dogVol[b].name);
+        console.log( dogVol[b].name);
       }
     };
       dogLoc.innerHTML += "<div>" + callData + callType  + callNamePrice + "</div>";
-
-  };
+    };
 };
 
 function catLists() {
   var catData = JSON.parse(this.responseText).cat_brands ;
-  console.log(callData);
+
   for (var i = 0; i < catData.length; i++) {
     // console.log( catData[i] ) ;
-    var callData = "<h2>" + "<p>" + "Cat Food Brands" + "</p>"  + catData[i].name + "</h2>";
+    var callData = "<h2>" + "<p>" + "Cat Food Brand" + "</p>"  + catData[i].name + "</h2>";
 
     var catType = catData[i].types ;
     for (var k = 0; k < catType.length; k++) {
@@ -47,7 +52,7 @@ function catLists() {
       for (var b = 0; b < catVol.length; b++) {
         catVol[b];
         callNamePrice += "<p>" + catVol[b].name + ": " + " $" + catVol[b].price + "</p>";
-        // console.log( catVol[b].name);
+        console.log( catVol[b].name);
       };
     };
       catLoc.innerHTML += "<div>" + callData + callType  + callNamePrice + "</div>";
@@ -63,3 +68,4 @@ catRequest.send();
 dogRequest.addEventListener("load", dogLists);
 dogRequest.open("GET", "dogJSON.json");
 dogRequest.send();
+
